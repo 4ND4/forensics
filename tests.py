@@ -72,8 +72,6 @@ for i in range(len(listMD5)):
             if j not in listDuplicate:
                 listDuplicate.append(j)
 
-print 'baby bunny'
-
 outputPath ='~/Documents/UCD/Work/'
 
 for i in listDuplicate:
