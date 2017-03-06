@@ -3,8 +3,10 @@ import os
 import hashlib
 
 listObject = []
-listMD5 = []
+listSHA1 = []
 listDuplicate = []
+
+print os.name
 
 def directoryRecurse(directoryObject, parentPath):
     for entryObject in directoryObject:
@@ -38,21 +40,21 @@ def directoryRecurse(directoryObject, parentPath):
                 sha1hash.update(fileData)
                 listObject.append(entryObject)
 
-                listMD5.append(md5hash.hexdigest())
-
-            #elif f_type == pytsk3.TSK_FS_META_TYPE_REG and entryObject.info.meta.size == 0:
+                listSHA1.append(md5hash.hexdigest())
 
         except IOError as e:
             print e
             continue
 
-imageFile = open(os.path.expanduser("~/Documents/UCD/Work/AssignmentImage.dmg"))
+imageFile = open(os.path.expanduser("D:/Forensics/shaCollision.001"))
 
 url = imageFile.name
 
 dirPath = "/"
 
 imageHandle = pytsk3.Img_Info(url)
+
+#determine partition type
 
 partitionTable = pytsk3.Volume_Info(imageHandle)
 
@@ -63,10 +65,10 @@ for partition in partitionTable:
 
         directoryRecurse(directoryObject, [])
 
-for i in range(len(listMD5)):
-    for j in range(i+1, len(listMD5)):
+for i in range(len(listSHA1)):
+    for j in range(i+1, len(listSHA1)):
 
-        if listMD5[i] == listMD5[j]:
+        if listSHA1[i] == listSHA1[j]:
             if i not in listDuplicate:
                 listDuplicate.append(i)
             if j not in listDuplicate:
