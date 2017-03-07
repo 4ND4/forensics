@@ -5,6 +5,7 @@ import hashlib
 listObject = []
 listSHA1 = []
 listDuplicate = []
+listFilter =[]
 
 print os.name
 
@@ -46,7 +47,7 @@ def directoryRecurse(directoryObject, parentPath):
             print e
             continue
 
-imageFile = open(os.path.expanduser("D:/Forensics/shaCollision.001"))
+imageFile = open(os.path.expanduser("D:/Forensics/ShaCollision.dmg"))
 
 url = imageFile.name
 
@@ -76,6 +77,9 @@ for i in range(len(listSHA1)):
 
 for i in listDuplicate:
     if listObject[i].info.meta.size != 4096:        # find out a better filter for empty directories
-        output = open(listObject[i].info.name.name, "w+")
-        output.write(listObject[i].read_random(0, listObject[i].info.meta.size))
-        output.close
+        listFilter.append(i)
+
+for i in listFilter:
+    output = open(listObject[i].info.name.name, "w+")
+    output.write(listObject[i].read_random(0, listObject[i].info.meta.size))
+    output.close
