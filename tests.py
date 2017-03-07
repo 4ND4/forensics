@@ -34,8 +34,7 @@ def directoryRecurse(directoryObject, parentPath):
 
                 md5hash = hashlib.md5()
                 md5hash.update(fileData)
-                sha1hash = hashlib.sha1()
-                sha1hash.update(fileData)
+
                 listObject.append(entryObject)
 
                 listMD5.append(md5hash.hexdigest())

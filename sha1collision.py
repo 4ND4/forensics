@@ -35,13 +35,11 @@ def directoryRecurse(directoryObject, parentPath):
 
                 fileData = entryObject.read_random(0, entryObject.info.meta.size)
 
-                md5hash = hashlib.md5()
-                md5hash.update(fileData)
                 sha1hash = hashlib.sha1()
                 sha1hash.update(fileData)
                 listObject.append(entryObject)
 
-                listSHA1.append(md5hash.hexdigest())
+                listSHA1.append(sha1hash.hexdigest())
 
         except IOError as e:
             print e
