@@ -45,7 +45,7 @@ def directoryRecurse(directoryObject, parentPath):
             print e
             continue
 
-imageFile = open(os.path.expanduser("D:/Forensics/ShaCollision.dmg"))
+imageFile = open(os.path.expanduser("D:/Forensics/ShaCollision.dmg"))   #windows directory
 
 url = imageFile.name
 
